@@ -1,4 +1,3 @@
-[Inference Results.docx](https://github.com/JackMichalowski/Projects/files/6534590/Inference.Results.docx)
 ---
 title: "Evaluation Exercise - Option 1"
 author: "Jack Michalowski"
