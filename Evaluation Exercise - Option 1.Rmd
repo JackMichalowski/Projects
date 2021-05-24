@@ -46,9 +46,6 @@ sqldf(' select avg("Profit.as...of.Cost"), "Item.Type" from Data group by "Item.
 sqldf(' select avg("Profit.as...of.Cost"), Region from Data group by Region order by "Profit.as...of.Cost" ')
 #All regions seem to have very similar numbers in the category, but it is interesting to see that meat has the lowest percentage at around 15.6%, while clothing has a percantge of about 205%, which is much higher than every other item.
 
-#### Inference Results ####
-
-# Although it may depend on some specific cutoff number, products such as fruit and meat that both have relativley low total profit numbers and profit as a percentage of cost, should be sold less or dropped from selling altogether in the coming year. Other prdoucts that could be considered droppable would be beverages and personal care. On the other hand, products like cosmetics and household items should be sold more in the coming year due to very high total profit numbers. Another product that should definetly be sold more is clothing. Clothes are around the middle compared to other items in regard to total profits, but they have a very high profit as a percentage of cost compared to every other product. These are just a few of the products and othere may be some debate as to whether other products are considered droppable or sellable based on other factors, but these items in particular seem to stick out. As for regional preference, it seems that Europe and Sub-Saharan Africa are by far the most profitable regions, so it would make sense for those spots to take precedence over the other regions. Central America and the Caribbean, Australia and Oceania, Middle East and North Africa, and Asia all have profit numbers in a simailar area. These regions should all take precedence over North America for that reason.
 
 ```
 
