@@ -1,0 +1,54 @@
+---
+title: "Evaluation Exercise - Option 1"
+author: "Jack Michalowski"
+date: "5/24/2021"
+output: word_document
+---
+
+```{r}
+
+#Set up the working directory.
+setwd("~/Downloads")
+
+#Use the SQL package in R.
+require(sqldf)
+
+#Read in the dataset and display some of it.
+Data = read.csv(file = 'Data Science Evaluation.csv')
+head(Data)
+colnames(Data)
+
+#### SQL Queries ####
+
+#First, select useful columns and order the dataset, both ascending and descending, by Total Profit to get a general sense of which products make more or less money.
+sqldf(' select "Total.Profit", Region, "Item.Type" from Data order by "Total.Profit" desc ')
+sqldf(' select "Total.Profit", Region, "Item.Type" from Data order by "Total.Profit" ')
+
+#List each unique item and region to see each type
+sqldf(' select distinct "Item.Type" from Data ')
+sqldf(' select distinct Region from Data ')
+
+#Run SQL statements to obtain and order the total profits for each indivdual item, as well as each individual region.
+sqldf(' select sum("Total.Profit"), "Item.Type" from Data group by "Item.Type" order by "Total.Profit" ')
+sqldf(' select sum("Total.Profit"), Region from Data group by Region order by "Total.Profit" ')
+
+#Based on the previous queries, we can see that cosmetics have the highest total profits of all items, while fruit is the item with the lowest total profits.
+#We can also see that of all the regions, Europe has the highest total profits, while North America has the lowest.
+
+#The following query will show how much each region makes off of cosmetics, the most profitable item.
+sqldf(' select sum("Total.Profit"), Region from Data where "Item.Type" = "Cosmetics" group by Region order by "Total.Profit" ')
+#This next query will show how much each region makes off of fruit, the least profitable item
+sqldf(' select sum("Total.Profit"), Region from Data where "Item.Type" = "Fruits" group by Region order by "Total.Profit" ')
+#It is interesting to see with this more in depth look, that Europe still profits the most off of these specific items, while North America profits the least.
+
+#Using another variable, profit as a percentage of cost, we will look into item and regional data.
+sqldf(' select avg("Profit.as...of.Cost"), "Item.Type" from Data group by "Item.Type" order by "Profit.as...of.Cost" ')
+sqldf(' select avg("Profit.as...of.Cost"), Region from Data group by Region order by "Profit.as...of.Cost" ')
+#All regions seem to have very similar numbers in the category, but it is interesting to see that meat has the lowest percentage at around 15.6%, while clothing has a percantge of about 205%, which is much higher than every other item.
+
+#### Inference Results ####
+
+# Although it may depend on some specific cutoff number, products such as fruit and meat that both have relativley low total profit numbers and profit as a percentage of cost, should be sold less or dropped from selling altogether in the coming year. Other prdoucts that could be considered droppable would be beverages and personal care. On the other hand, products like cosmetics and household items should be sold more in the coming year due to very high total profit numbers. Another product that should definetly be sold more is clothing. Clothes are around the middle compared to other items in regard to total profits, but they have a very high profit as a percentage of cost compared to every other product. These are just a few of the products and othere may be some debate as to whether other products are considered droppable or sellable based on other factors, but these items in particular seem to stick out. As for regional preference, it seems that Europe and Sub-Saharan Africa are by far the most profitable regions, so it would make sense for those spots to take precedence over the other regions. Central America and the Caribbean, Australia and Oceania, Middle East and North Africa, and Asia all have profit numbers in a simailar area. These regions should all take precedence over North America for that reason.
+
+```
+
